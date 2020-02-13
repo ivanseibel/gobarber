@@ -42,10 +42,10 @@ class UserController {
       {
         name: Yup.string().strict(true),
         email: Yup.string().email().strict(true),
-        oldPassword: Yup.string().min(6).strict(true),
-        password: Yup.string().strict(true).min(6)
-          .when('oldPassword', (oldPassword, field) => (
-            oldPassword ? field.required() : field
+        password: Yup.string().min(6).strict(true),
+        oldPassword: Yup.string().strict(true).min(6)
+          .when('password', (password, field) => (
+            password ? field.required() : field
           )),
         confirmPassword: Yup.string().strict(true)
           .when('password', (password, field) => (
@@ -68,7 +68,7 @@ class UserController {
       }
     }
 
-    if (oldPassword && password && !(await user.checkPassword(oldPassword))) {
+    if (password && !(await user.checkPassword(oldPassword))) {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
