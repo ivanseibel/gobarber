@@ -4,6 +4,7 @@ import User from '../models/User';
 
 class UserController {
   async store(req, res) {
+    // TODO Implement personalized validation messages
     const schema = Yup.object().shape(
       {
         name: Yup.string().strict(true).required(),
