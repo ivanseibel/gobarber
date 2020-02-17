@@ -5,6 +5,7 @@ import authConfig from '../../config/auth';
 
 class SessionController {
   async store(req, res) {
+    // TODO Implement personalized validation messages
     const schema = Yup.object().shape(
       {
         email: Yup.string().email().required(),

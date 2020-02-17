@@ -36,6 +36,7 @@ class AppointmentController {
   }
 
   async store(req, res) {
+    // TODO Implement personalized validation messages
     const schema = Yup.object().shape({
       provider_id: Yup.number().integer().strict().required(),
       date: Yup.date().required(),
