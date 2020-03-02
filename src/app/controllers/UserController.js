@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 
 import User from '../models/User';
 
+// TODO: Implement routines to validate/save avatar_id
 class UserController {
   async store(req, res) {
     // TODO Implement personalized validation messages
