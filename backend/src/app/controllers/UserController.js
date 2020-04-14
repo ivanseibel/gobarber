@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
 
 import User from '../models/User';
+import File from '../models/File';
 
 // TODO: Implement routines to validate/save avatar_id
 class UserController {
   async store(req, res) {
-    // TODO Implement personalized validation messages
     const schema = Yup.object().shape(
       {
         name: Yup.string().strict(true).required(),
@@ -40,7 +40,6 @@ class UserController {
   }
 
   async update(req, res) {
-    // TODO Implement personalized validation messages
     const schema = Yup.object().shape(
       {
         name: Yup.string().strict(true),
@@ -75,9 +74,22 @@ class UserController {
       return res.status(401).json({ error: 'Password does not match' });
     }
 
-    const { id, name, provider } = await user.update(req.body);
+    await user.update(req.body);
 
-    return res.json({ id, name, provider });
+    const { id, name, avatar } = User.findByPk(req.userId, {
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
+
+    return res.json({
+      id, name, email, avatar,
+    });
   }
 }
 
