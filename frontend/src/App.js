@@ -1,10 +1,15 @@
 import React from 'react';
+import { Router } from 'react-router-dom';
 
-import './App.css';
-import TechList from './components/TechList'
+import history from './services/history';
+import Routes from './routes';
 
 function App() {
-  return <TechList />
+  return (
+    <Router history={history}>
+      <Routes />
+    </Router>
+  );
 }
 
 export default App;
