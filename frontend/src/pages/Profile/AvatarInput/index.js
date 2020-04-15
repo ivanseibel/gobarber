@@ -13,6 +13,8 @@ export default function AvatarInput() {
 
   const ref = useRef();
 
+  console.tron.log(preview);
+
   useEffect(() => {
     if (ref.current) {
       registerField({
