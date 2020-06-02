@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 
@@ -16,6 +16,13 @@ import {
 import Background from '~/components/Background';
 
 const SignUp = ({ navigation }) => {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleSubmit = () => {
+    //
+  };
+
   return (
     <Background>
       <Container>
@@ -26,6 +33,8 @@ const SignUp = ({ navigation }) => {
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Full name"
+            returnKeyType="next"
+            onSubmitEditing={() => emailRef.current.focus()}
           />
           <FormInput
             icon="mail-outline"
@@ -33,22 +42,28 @@ const SignUp = ({ navigation }) => {
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Email"
+            ref={emailRef}
+            returnKeyType="next"
+            onSubmitEditing={() => passwordRef.current.focus()}
           />
           <FormInput
             icon="lock-outline"
             secureTextEntry
             placeholder="Password"
+            ref={passwordRef}
+            returnKeyType="send"
+            onSubmitEditing={handleSubmit}
           />
 
-          <SubmitButton onPress={() => {}}>Login</SubmitButton>
+          <SubmitButton onPress={handleSubmit}>Login</SubmitButton>
         </Form>
 
         <SignLink
           onPress={() => {
-            navigation.navigate('SignUp');
+            navigation.navigate('SignIn');
           }}
         >
-          <SignLinkText>Create new free account</SignLinkText>
+          <SignLinkText>I already have an account</SignLinkText>
         </SignLink>
       </Container>
     </Background>
