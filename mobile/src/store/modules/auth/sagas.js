@@ -27,7 +27,8 @@ export function* signIn({ payload }) {
 
     // history.push('/dashboard');
   } catch (error) {
-    Alert.alert('Login error', 'Authentication has been failed');
+    Alert.alert('Login error', error.message);
+    // Alert.alert('Login error', 'Authentication has been failed');
     yield put(signFailure());
   }
 }
@@ -40,7 +41,6 @@ export function* signUp({ payload }) {
       name,
       email,
       password,
-      provider: true,
     });
     Alert.alert('Success', 'Your account was created with success');
     // history.push('/');
