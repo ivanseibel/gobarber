@@ -7,7 +7,7 @@ import 'react-native-gesture-handler';
 import './config/ReactotronConfig';
 
 import { store, persistor } from './store';
-import Routes from '~/routes';
+import Routes from './routes';
 
 export default function App() {
   return (
