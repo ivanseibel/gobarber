@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Image } from 'react-native';
 
 import logo from '~/assets/logo.png';
@@ -14,7 +15,7 @@ import {
 
 import Background from '~/components/Background';
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   return (
     <Background>
       <Container>
@@ -25,23 +26,33 @@ const SignIn = () => {
             keyboardType="email-address"
             autoCorrect={false}
             autoCapitalize="none"
-            placeholder="Type your email"
+            placeholder="Email"
           />
           <FormInput
             icon="lock-outline"
             secureTextEntry
-            placeholder="Type your password"
+            placeholder="Password"
           />
 
           <SubmitButton onPress={() => {}}>Login</SubmitButton>
         </Form>
 
-        <SignLink onPress={() => {}}>
+        <SignLink
+          onPress={() => {
+            navigation.navigate('SignUp');
+          }}
+        >
           <SignLinkText>Create new free account</SignLinkText>
         </SignLink>
       </Container>
     </Background>
   );
+};
+
+SignIn.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default SignIn;
