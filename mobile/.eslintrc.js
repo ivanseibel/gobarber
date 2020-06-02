@@ -36,6 +36,7 @@ module.exports = {
     'react/static-property-placement': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-console': ['error', {allow: ['tron']}],
+    'camelcase': 'off',
   },
   settings: {
     'import/resolver': {
