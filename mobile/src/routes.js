@@ -22,6 +22,19 @@ import Confirm from '~/pages/New/Confirm';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const NavigationOptions = (navigation, title) => ({
+  title,
+  headerLeft: () => (
+    <TouchableOpacity
+      onPress={() => {
+        navigation.goBack();
+      }}
+    >
+      <Icon name="chevron-left" size={20} color="#fff" />
+    </TouchableOpacity>
+  ),
+});
+
 function SignRoutes() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -31,7 +44,7 @@ function SignRoutes() {
   );
 }
 
-function NewRoutes({ navigation }) {
+function NewRoutes() {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -41,34 +54,16 @@ function NewRoutes({ navigation }) {
       }}
     >
       <Stack.Screen
-        options={{
-          title: 'Select a provider',
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Dashboard');
-              }}
-            >
-              <Icon name="chevron-left" size={20} color="#fff" />
-            </TouchableOpacity>
-          ),
-        }}
+        options={({ navigation }) =>
+          NavigationOptions(navigation, 'Select a Provider')
+        }
         name="SelectProvider"
         component={SelectProvider}
       />
       <Stack.Screen
-        options={{
-          title: 'Choose date/time',
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('SelectProvider');
-              }}
-            >
-              <Icon name="chevron-left" size={20} color="#fff" />
-            </TouchableOpacity>
-          ),
-        }}
+        options={({ navigation }) =>
+          NavigationOptions(navigation, 'Select a Date/Time')
+        }
         name="SelectDateTime"
         component={SelectDateTime}
       />
