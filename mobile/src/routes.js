@@ -56,7 +56,22 @@ function NewRoutes({ navigation }) {
         name="SelectProvider"
         component={SelectProvider}
       />
-      <Stack.Screen name="SelectDateTime" component={SelectDateTime} />
+      <Stack.Screen
+        options={{
+          title: 'Choose date/time',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('SelectProvider');
+              }}
+            >
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </TouchableOpacity>
+          ),
+        }}
+        name="SelectDateTime"
+        component={SelectDateTime}
+      />
       <Stack.Screen name="Confirm" component={Confirm} />
     </Stack.Navigator>
   );
