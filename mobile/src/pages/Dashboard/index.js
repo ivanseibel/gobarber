@@ -10,14 +10,7 @@ import Appointment from '~/components/Appointment';
 
 import api from '~/services/api';
 
-const Dashboard = ({ navigation }) => {
-  navigation.setOptions({
-    tabBarLabel: 'Appointments',
-    tabBarIcon: ({ color }) => {
-      return <Icon name="event" size={20} color={color} />;
-    },
-  });
-
+const Dashboard = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
@@ -67,10 +60,6 @@ const Dashboard = ({ navigation }) => {
       </Container>
     </Background>
   );
-};
-
-Dashboard.propTypes = {
-  navigation: PropTypes.shape().isRequired,
 };
 
 export default Dashboard;
