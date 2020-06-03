@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Background from '~/components/Background';
@@ -15,15 +14,7 @@ import {
   Separator,
 } from './styles';
 
-const Profile = ({ navigation }) => {
-  navigation.setOptions({
-    tabBarLabel: 'My Profile',
-    tabBarIcon: ({ color }) => {
-      console.log(color);
-      return <Icon name="person" size={20} color={color} />;
-    },
-  });
-
+const Profile = () => {
   const dispatch = useDispatch();
 
   const profile = useSelector((state) => state.user.profile);

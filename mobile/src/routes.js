@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
 
@@ -34,8 +35,26 @@ function DashboardRoute() {
         style: { backgroundColor: '#8d41a8' },
       }}
     >
-      <Tab.Screen name="Dashboard" component={Dashboard} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{
+          tabBarLabel: 'Appointments',
+          tabBarIcon: ({ color }) => {
+            return <Icon name="person" size={20} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarLabel: 'My Profile',
+          tabBarIcon: ({ color }) => {
+            return <Icon name="person" size={20} color={color} />;
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 }
