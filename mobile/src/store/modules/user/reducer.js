@@ -1,7 +1,12 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  profile: null,
+  profile: {
+    id: '',
+    name: '',
+    email: '',
+    provider: false,
+  },
 };
 
 export default function user(state = INITIAL_STATE, action) {
@@ -18,7 +23,12 @@ export default function user(state = INITIAL_STATE, action) {
       }
 
       case '@auth/SIGN_OUT': {
-        draft.profile = null;
+        draft.profile = {
+          id: '',
+          name: '',
+          email: '',
+          provider: false,
+        };
         break;
       }
 
