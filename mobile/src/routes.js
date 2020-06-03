@@ -7,11 +7,17 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TouchableOpacity } from 'react-native';
+
 import SignIn from '~/pages/SignIn';
 import SignUp from '~/pages/SignUp';
 
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
+
+import SelectProvider from '~/pages/New/SelectProvider';
+import SelectDateTime from '~/pages/New/SelectDateTime';
+import Confirm from '~/pages/New/Confirm';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,6 +27,37 @@ function SignRoutes() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="SignUp" component={SignUp} />
+    </Stack.Navigator>
+  );
+}
+
+function NewRoutes({ navigation }) {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTransparent: true,
+        headerTintColor: '#fff',
+        headerLeftContainerStyle: { marginLeft: 20 },
+      }}
+    >
+      <Stack.Screen
+        options={{
+          title: 'Select a provider',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Dashboard');
+              }}
+            >
+              <Icon name="chevron-left" size={20} color="#fff" />
+            </TouchableOpacity>
+          ),
+        }}
+        name="SelectProvider"
+        component={SelectProvider}
+      />
+      <Stack.Screen name="SelectDateTime" component={SelectDateTime} />
+      <Stack.Screen name="Confirm" component={Confirm} />
     </Stack.Navigator>
   );
 }
@@ -42,6 +79,17 @@ function DashboardRoute() {
           tabBarLabel: 'Appointments',
           tabBarIcon: ({ color }) => {
             return <Icon name="person" size={20} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="NewRoutes"
+        component={NewRoutes}
+        options={{
+          tabBarVisible: false,
+          tabBarLabel: 'Schedule',
+          tabBarIcon: ({ color }) => {
+            return <Icon name="add-circle-outline" size={20} color={color} />;
           },
         }}
       />
