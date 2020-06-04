@@ -14,6 +14,7 @@ const DateInput = ({ date, onChange }) => {
   const handleChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     onChange(currentDate);
+    setOpened(false);
   };
 
   return (
