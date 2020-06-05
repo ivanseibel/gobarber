@@ -67,7 +67,13 @@ function NewRoutes() {
         name="SelectDateTime"
         component={SelectDateTime}
       />
-      <Stack.Screen name="Confirm" component={Confirm} />
+      <Stack.Screen
+        options={({ navigation }) =>
+          NavigationOptions(navigation, 'Confirm Appointment')
+        }
+        name="Confirm"
+        component={Confirm}
+      />
     </Stack.Navigator>
   );
 }

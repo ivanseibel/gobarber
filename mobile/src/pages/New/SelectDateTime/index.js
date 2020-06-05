@@ -42,7 +42,7 @@ const SelectDateTime = ({ navigation, route }) => {
           keyExtractor={(item) => item.time}
           renderItem={({ item }) => (
             <Hour
-              onPress={() => handleSelectTime(item.value)}
+              onPress={() => handleSelectTime(item.fullDateTime)}
               enabled={item.available}
             >
               <Title>{item.time}</Title>
