@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Alert } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { Container, Title, List } from './styles';
 
@@ -13,18 +14,41 @@ import api from '~/services/api';
 const Dashboard = () => {
   const [appointments, setAppointments] = useState([]);
 
-  useEffect(() => {
-    async function loadAppointments() {
-      try {
-        const response = await api.get('appointments');
-        setAppointments(response.data);
-      } catch (error) {
-        Alert.alert(error.message);
-      }
-    }
+  // useEffect(() => {
+  //   async function loadAppointments() {
+  //     try {
+  //       const response = await api.get('appointments');
+  //       setAppointments(response.data);
+  //     } catch (error) {
+  //       Alert.alert(error.message);
+  //     }
+  //   }
 
-    loadAppointments();
-  }, []);
+  //   loadAppointments();
+  // }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true;
+
+      async function loadAppointments() {
+        try {
+          const response = await api.get('appointments');
+          if (isActive) {
+            setAppointments(response.data);
+          }
+        } catch (error) {
+          Alert.alert(error.message);
+        }
+      }
+
+      loadAppointments();
+
+      return () => {
+        isActive = false;
+      };
+    }, [])
+  );
 
   const handleCancel = async (id) => {
     try {

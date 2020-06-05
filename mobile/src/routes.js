@@ -81,6 +81,7 @@ function NewRoutes() {
 function DashboardRoute() {
   return (
     <Tab.Navigator
+      screenOptions={{ unmountOnBlur: true }}
       tabBarOptions={{
         activeTintColor: '#fff',
         inactiveTintColor: 'rgba(255,255,255, 0.6)',
@@ -89,7 +90,7 @@ function DashboardRoute() {
       }}
     >
       <Tab.Screen
-        name="Dashboard"
+        name="Appointments"
         component={Dashboard}
         options={{
           tabBarLabel: 'Appointments',

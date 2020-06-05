@@ -10,7 +10,6 @@ import Background from '~/components/Background';
 
 const Confirm = ({ navigation, route }) => {
   const { provider, time } = route.params;
-  console.tron.log(route.params);
   const dateFormatted = useMemo(() => {
     return formatRelative(parseISO(time), new Date());
   }, [time]);
@@ -22,7 +21,7 @@ const Confirm = ({ navigation, route }) => {
         date: time,
       });
 
-      navigation.navigate('Dashboard');
+      navigation.navigate('Appointments');
     } catch (error) {
       Alert.alert(error.message);
     }
