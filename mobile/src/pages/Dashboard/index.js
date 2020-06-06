@@ -14,19 +14,6 @@ import api from '~/services/api';
 const Dashboard = () => {
   const [appointments, setAppointments] = useState([]);
 
-  // useEffect(() => {
-  //   async function loadAppointments() {
-  //     try {
-  //       const response = await api.get('appointments');
-  //       setAppointments(response.data);
-  //     } catch (error) {
-  //       Alert.alert(error.message);
-  //     }
-  //   }
-
-  //   loadAppointments();
-  // }, []);
-
   useFocusEffect(
     useCallback(() => {
       let isActive = true;
